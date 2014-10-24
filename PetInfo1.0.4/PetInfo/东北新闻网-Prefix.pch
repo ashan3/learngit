@@ -1,0 +1,77 @@
+//
+// Prefix header for all source files of the 'PetInfo' target in the 'PetInfo' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+//导入自定义工具类
+//用于获取视图的各个高度属性
+#import "InitControlStyle.h"
+#import "UIViewExt.h"
+//自定义类目，用于获取子视图的下一个响应者
+#import "UIView+Additions.h"
+//获取设备信息
+#import "WXHLGlobalUICommon.h"
+#import "UtilDefine.h"
+//导入百度推送包
+
+//导入key包
+#import "kPetInfo.h"
+//导入url地址和接口
+#import "BaseURL+Implements.h"
+//导入访问接口包
+#import "DataService.h"
+//导入本地信息描述
+#import "StringValue.h"
+//导入数据控制中心
+#import "DataCenter.h"
+//home页按钮
+#define dockHH 49
+#import "SVProgressHUD.h"
+#import "BaseViewController.h"
+
+#import "NSArray+Frankenstein.h"
+
+typedef enum kHomeTableViewCellType{
+    //提纲页面
+    kMedicineType=0,//药品
+    kNearType=1,//附近
+    kDiseaseType=2,//常见病
+    //列表
+    kDetailMedicineType=3,//药品列表
+    kDetailDiseaseType=5,//附近列表
+    kDetailNearType=4//常见病列表
+}kHomeTableViewCellType ;
+
+#define PP_mbprogressHudOpacity 0.7
+
+#if __has_feature(objc_arc)
+#define RONGO_ARC_PROP_RETAIN strong
+#define RONGO_ARC_RETAIN(x) (x)
+#define RONGO_ARC_RELEASE(x)
+#define RONGO_ARC_AUTORELEASE(x) (x)
+#define RONGO_ARC_BLOCK_COPY(x) (x)
+#define RONGO_ARC_BLOCK_RELEASE(x)
+#define RONGO_ARC_SUPER_DEALLOC()
+#define RONGO_ARC_AUTORELEASE_POOL_START() @autoreleasepool {
+#define RONGO_ARC_AUTORELEASE_POOL_END() }
+#else
+#define RONGO_ARC_PROP_RETAIN retain
+#define RONGO_ARC_RETAIN(x) ([(x) retain])
+#define RONGO_ARC_RELEASE(x) ([(x) release])
+#define RONGO_ARC_AUTORELEASE(x) ([(x) autorelease])
+#define RONGO_ARC_BLOCK_COPY(x) (Block_copy(x))
+#define RONGO_ARC_BLOCK_RELEASE(x) (Block_release(x))
+#define RONGO_ARC_SUPER_DEALLOC() ([super dealloc])
+#define RONGO_ARC_AUTORELEASE_POOL_START() NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+#define RONGO_ARC_AUTORELEASE_POOL_END() [pool release];
+#endif
+
